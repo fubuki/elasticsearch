@@ -79,6 +79,7 @@ public class TransportSearchAction extends HandledTransportAction<SearchRequest,
         // optimize search type for cases where there is only one shard group to search on
         if (optimizeSingleShard && searchRequest.searchType() != SCAN && searchRequest.searchType() != COUNT) {
             try {
+                // fubuki cluster
                 ClusterState clusterState = clusterService.state();
                 String[] concreteIndices = clusterState.metaData().concreteIndices(searchRequest.indicesOptions(), searchRequest.indices());
                 Map<String, Set<String>> routingMap = clusterState.metaData().resolveSearchRouting(searchRequest.routing(), searchRequest.indices());
@@ -94,6 +95,7 @@ public class TransportSearchAction extends HandledTransportAction<SearchRequest,
             }
         }
 
+        // fubuki
         if (searchRequest.searchType() == DFS_QUERY_THEN_FETCH) {
             dfsQueryThenFetchAction.execute(searchRequest, listener);
         } else if (searchRequest.searchType() == SearchType.QUERY_THEN_FETCH) {

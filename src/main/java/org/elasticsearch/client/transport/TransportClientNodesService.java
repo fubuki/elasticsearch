@@ -201,6 +201,7 @@ public class TransportClientNodesService extends AbstractComponent {
         int index = getNodeNumber();
         RetryListener<Response> retryListener = new RetryListener<>(callback, listener, nodes, index, threadPool, logger);
         DiscoveryNode node = nodes.get((index) % nodes.size());
+        logger.info("fubuki: show node size:" + nodes.size());
         try {
             callback.doWithNode(node, retryListener);
         } catch (Throwable t) {

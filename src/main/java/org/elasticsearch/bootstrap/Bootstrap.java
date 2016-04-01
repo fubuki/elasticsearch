@@ -234,6 +234,7 @@ public class Bootstrap {
 
         String stage = "Initialization";
         try {
+            System.out.println("fubuki start");
             if (!foreground) {
                 Loggers.disableConsoleLogging();
                 System.out.close();

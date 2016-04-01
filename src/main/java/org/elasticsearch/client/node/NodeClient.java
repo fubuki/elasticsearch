@@ -28,7 +28,10 @@ import org.elasticsearch.client.support.AbstractClient;
 import org.elasticsearch.client.support.Headers;
 import org.elasticsearch.common.collect.MapBuilder;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.ESLogger;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.node.Node;
 import org.elasticsearch.threadpool.ThreadPool;
 
 import java.util.Map;
@@ -85,6 +88,8 @@ public class NodeClient extends AbstractClient {
     @SuppressWarnings("unchecked")
     @Override
     public <Request extends ActionRequest, Response extends ActionResponse, RequestBuilder extends ActionRequestBuilder<Request, Response, RequestBuilder, Client>> ActionFuture<Response> execute(Action<Request, Response, RequestBuilder, Client> action, Request request) {
+        ESLogger logger = Loggers.getLogger(Node.class, "");
+        logger.info("fubuki execute stack");
         headers.applyTo(request);
         TransportAction<Request, Response> transportAction = actions.get((ClientAction)action);
         return transportAction.execute(request);
@@ -93,6 +98,8 @@ public class NodeClient extends AbstractClient {
     @SuppressWarnings("unchecked")
     @Override
     public <Request extends ActionRequest, Response extends ActionResponse, RequestBuilder extends ActionRequestBuilder<Request, Response, RequestBuilder, Client>> void execute(Action<Request, Response, RequestBuilder, Client> action, Request request, ActionListener<Response> listener) {
+        ESLogger logger = Loggers.getLogger(Node.class, "");
+        logger.info("fubuki execute stack stage2{}", actions.get((ClientAction)action));
         headers.applyTo(request);
         TransportAction<Request, Response> transportAction = actions.get((ClientAction)action);
         transportAction.execute(request, listener);

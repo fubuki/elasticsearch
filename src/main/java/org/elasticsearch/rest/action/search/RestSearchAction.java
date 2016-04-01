@@ -78,6 +78,7 @@ public class RestSearchAction extends BaseRestHandler {
 
     @Override
     public void handleRequest(final RestRequest request, final RestChannel channel, final Client client) {
+        logger.info("restful api called.{}", client);
         SearchRequest searchRequest;
         searchRequest = RestSearchAction.parseSearchRequest(request);
         searchRequest.listenerThreaded(false);

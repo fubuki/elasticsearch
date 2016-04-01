@@ -172,23 +172,39 @@ public final class InternalNode implements Node {
         boolean success = false;
         try {
             ModulesBuilder modules = new ModulesBuilder();
+            // show version
             modules.add(new Version.Module(version));
+            //
             modules.add(new CacheRecyclerModule(settings));
             modules.add(new PageCacheRecyclerModule(settings));
+
+            // prevent OutOfMemoryError
             modules.add(new CircuitBreakerModule(settings));
+
             modules.add(new BigArraysModule(settings));
+            // 讀入 plugin
             modules.add(new PluginsModule(settings, pluginsService));
+            //
             modules.add(new SettingsModule(settings));
+
             modules.add(new NodeModule(this));
+            // bind arrdress and port
             modules.add(new NetworkModule());
+            // groovy script
             modules.add(new ScriptModule(settings));
+
             modules.add(new EnvironmentModule(environment));
             modules.add(new NodeEnvironmentModule(nodeEnvironment));
+
             modules.add(new ClusterNameModule(settings));
+
             modules.add(new ThreadPoolModule(threadPool));
+
             modules.add(new DiscoveryModule(settings));
+
             modules.add(new ClusterModule(settings));
             modules.add(new RestModule(settings));
+
             modules.add(new TransportModule(settings));
             if (settings.getAsBoolean(HTTP_ENABLED, true)) {
                 modules.add(new HttpServerModule(settings));
@@ -198,13 +214,16 @@ public final class InternalNode implements Node {
             modules.add(new SearchModule());
             modules.add(new ActionModule(false));
             modules.add(new MonitorModule(settings));
+
             modules.add(new GatewayModule(settings));
             modules.add(new NodeClientModule());
             modules.add(new BulkUdpModule());
+            //
             modules.add(new ShapeModule());
             modules.add(new PercolatorModule());
             modules.add(new ResourceWatcherModule());
             modules.add(new RepositoriesModule());
+
             modules.add(new TribeModule());
 
             injector = modules.createInjector();

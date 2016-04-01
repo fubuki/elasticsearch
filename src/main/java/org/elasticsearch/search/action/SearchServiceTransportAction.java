@@ -326,6 +326,7 @@ public class SearchServiceTransportAction extends AbstractComponent {
     }
 
     public void sendExecuteFetch(DiscoveryNode node, final ShardSearchTransportRequest request, final SearchServiceListener<QueryFetchSearchResult> listener) {
+        // fubuki
         if (clusterService.state().nodes().localNodeId().equals(node.id())) {
             execute(new Callable<QueryFetchSearchResult>() {
                 @Override
@@ -787,6 +788,7 @@ public class SearchServiceTransportAction extends AbstractComponent {
 
         @Override
         public QuerySearchRequest newInstance() {
+            logger.info("fubuki search action");
             return new QuerySearchRequest();
         }
 

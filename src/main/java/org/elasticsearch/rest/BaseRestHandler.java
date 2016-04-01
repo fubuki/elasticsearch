@@ -25,7 +25,10 @@ import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.FilterClient;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.common.component.AbstractComponent;
+import org.elasticsearch.common.logging.ESLogger;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.node.Node;
 
 import java.util.Set;
 
@@ -50,6 +53,8 @@ public abstract class BaseRestHandler extends AbstractComponent implements RestH
 
     @Override
     public final void handleRequest(RestRequest request, RestChannel channel) throws Exception {
+        ESLogger logger = Loggers.getLogger(Node.class, "");
+        logger.info("fubuki invoke hand. client handle : {}", client);
         handleRequest(request, channel, new HeadersAndContextCopyClient(client, request, controller.relevantHeaders()));
     }
 

@@ -41,7 +41,7 @@ import static com.google.common.collect.Maps.newHashMap;
 /**
  * Represents a global cluster-wide routing table for all indices including the
  * version of the current routing state.
- *
+ * fubuki store routingtable
  * @see IndexRoutingTable
  */
 public class RoutingTable implements Iterable<IndexRoutingTable> {

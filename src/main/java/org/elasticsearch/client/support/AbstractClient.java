@@ -81,6 +81,9 @@ import org.elasticsearch.action.update.UpdateRequestBuilder;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.Nullable;
+import org.elasticsearch.common.logging.ESLogger;
+import org.elasticsearch.common.logging.Loggers;
+import org.elasticsearch.node.Node;
 
 /**
  *
@@ -335,6 +338,8 @@ public abstract class AbstractClient implements Client {
 
     @Override
     public void search(final SearchRequest request, final ActionListener<SearchResponse> listener) {
+        ESLogger logger = Loggers.getLogger(Node.class, "");
+        logger.info("fubuki invoke search request action.");
         execute(SearchAction.INSTANCE, request, listener);
     }
 

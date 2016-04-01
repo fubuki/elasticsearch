@@ -219,7 +219,7 @@ public class IndicesService extends AbstractLifecycleComponent<IndicesService> i
                 }
             }
         }
-
+        logger.info("fubuki NodeIndicesStats start");
         Map<Index, List<IndexShardStats>> statsByShard = Maps.newHashMap();
         for (Tuple<IndexService, Injector> value : indices.values()) {
             IndexService indexService = value.v1();

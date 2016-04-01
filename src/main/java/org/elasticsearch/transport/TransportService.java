@@ -490,7 +490,7 @@ public class TransportService extends AbstractLifecycleComponent<TransportServic
         }
 
         protected void traceReceivedResponse(long requestId, DiscoveryNode sourceNode, String action) {
-            tracerLog.trace("[{}][{}] received response from [{}]", requestId, action, sourceNode);
+            tracerLog.trace("fubuki [{}][{}] received response from [{}]", requestId, action, sourceNode);
         }
 
         protected void traceUnresolvedResponse(long requestId) {

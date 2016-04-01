@@ -75,6 +75,7 @@ import org.elasticsearch.env.Environment;
 import org.elasticsearch.env.EnvironmentModule;
 import org.elasticsearch.indices.breaker.CircuitBreakerModule;
 import org.elasticsearch.monitor.MonitorService;
+import org.elasticsearch.node.Node;
 import org.elasticsearch.node.internal.InternalSettingsPreparer;
 import org.elasticsearch.node.settings.NodeSettingsService;
 import org.elasticsearch.plugins.PluginsModule;
@@ -85,6 +86,8 @@ import org.elasticsearch.threadpool.ThreadPoolModule;
 import org.elasticsearch.transport.TransportModule;
 import org.elasticsearch.transport.TransportService;
 import org.elasticsearch.transport.netty.NettyTransport;
+import org.elasticsearch.common.logging.ESLogger;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.concurrent.TimeUnit;
 
@@ -177,6 +180,10 @@ public class TransportClient extends AbstractClient {
 
         boolean success = false;
         try {
+            ESLogger logger = Loggers.getLogger(Node.class, tuple.v1().get("name"));
+            logger.info("fubuki invoke transport client.");
+
+
             ModulesBuilder modules = new ModulesBuilder();
             modules.add(new Version.Module(version));
             modules.add(new CacheRecyclerModule(settings));
