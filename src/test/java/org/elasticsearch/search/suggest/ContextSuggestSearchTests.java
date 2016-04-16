@@ -982,6 +982,7 @@ public class ContextSuggestSearchTests extends ElasticsearchIntegrationTest {
                 .addContextField("st", value1).addContextField("nd", value2);
 
         SuggestRequestBuilder suggestionRequest = client().prepareSuggest(INDEX).addSuggestion(context);
+        // how elasticsearch get response from action.
         SuggestResponse suggestResponse = suggestionRequest.execute().actionGet();
         ArrayList<String> suggestions = new ArrayList<>();
 

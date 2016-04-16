@@ -70,6 +70,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class InternalEngine extends Engine {
 
+    // fubuki low layer action
     private final FailEngineOnMergeFailure mergeSchedulerFailureListener;
     private final MergeSchedulerListener mergeSchedulerListener;
 

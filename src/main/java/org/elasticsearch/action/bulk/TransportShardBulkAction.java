@@ -68,7 +68,7 @@ import java.util.Set;
  * Performs the index operation.
  */
 public class TransportShardBulkAction extends TransportShardReplicationOperationAction<BulkShardRequest, BulkShardRequest, BulkShardResponse> {
-
+    //TransportShardReplicationOperationAction
     private final static String OP_TYPE_UPDATE = "update";
     private final static String OP_TYPE_DELETE = "delete";
 

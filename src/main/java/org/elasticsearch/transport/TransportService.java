@@ -101,6 +101,7 @@ public class TransportService extends AbstractLifecycleComponent<TransportServic
     @Inject
     public TransportService(Settings settings, Transport transport, ThreadPool threadPool) {
         super(settings);
+        // where transport from
         this.transport = transport;
         this.threadPool = threadPool;
         this.tracerLogInclude = settings.getAsArray(SETTING_TRACE_LOG_INCLUDE, Strings.EMPTY_ARRAY, true);
@@ -249,6 +250,7 @@ public class TransportService extends AbstractLifecycleComponent<TransportServic
         sendRequest(node, action, request, TransportRequestOptions.EMPTY, handler);
     }
 
+    // track fubuki update action
     public <T extends TransportResponse> void sendRequest(final DiscoveryNode node, final String action, final TransportRequest request,
                                                           final TransportRequestOptions options, TransportResponseHandler<T> handler) {
         if (node == null) {

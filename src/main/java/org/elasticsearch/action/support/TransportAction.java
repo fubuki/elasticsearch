@@ -56,6 +56,7 @@ public abstract class TransportAction<Request extends ActionRequest, Response ex
         return future;
     }
 
+    // fubuki execute async action
     public final void execute(Request request, ActionListener<Response> listener) {
         if (forceThreadedListener()) {
             request.listenerThreaded(true);

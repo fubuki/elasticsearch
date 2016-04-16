@@ -209,6 +209,7 @@ public class TransportBulkAction extends HandledTransportAction<BulkRequest, Bul
         return Math.max(1, System.currentTimeMillis() - startTime);
     }
 
+    // track fubuki
     private void executeBulk(final BulkRequest bulkRequest, final long startTime, final ActionListener<BulkResponse> listener, final AtomicArray<BulkItemResponse> responses ) {
         final ClusterState clusterState = clusterService.state();
         // TODO use timeout to wait here if its blocked...

@@ -195,6 +195,7 @@ public class TransportClientNodesService extends AbstractComponent {
         return this;
     }
 
+    // fubuki track update action
     public <Response> void execute(NodeListenerCallback<Response> callback, ActionListener<Response> listener) throws ElasticsearchException {
         ImmutableList<DiscoveryNode> nodes = this.nodes;
         ensureNodesAreAvailable(nodes);
