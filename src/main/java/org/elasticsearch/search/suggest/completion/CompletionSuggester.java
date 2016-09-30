@@ -46,10 +46,11 @@ public class CompletionSuggester extends Suggester<CompletionSuggestionContext> 
 
     private static final ScoreComparator scoreComparator = new ScoreComparator();
 
-
+    // fubuki trace suggest
     @Override
     protected Suggest.Suggestion<? extends Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>> innerExecute(String name,
             CompletionSuggestionContext suggestionContext, IndexSearcher searcher, CharsRefBuilder spare) throws IOException {
+
         if (suggestionContext.mapper() == null || !(suggestionContext.mapper() instanceof CompletionFieldMapper)) {
             throw new ElasticsearchException("Field [" + suggestionContext.getField() + "] is not a completion suggest field");
         }
@@ -77,8 +78,10 @@ public class CompletionSuggester extends Suggester<CompletionSuggestionContext> 
                 for (Lookup.LookupResult res : lookupResults) {
 
                     final String key = res.key.toString();
+                    // fubuki trace suggest find score
                     final float score = res.value;
                     final Option value = results.get(key);
+                    // fubuki trace suggest : generate suggest
                     if (value == null) {
                         final Option option = new CompletionSuggestion.Entry.Option(new StringText(key), score, res.payload == null ? null
                                 : new BytesArray(res.payload));

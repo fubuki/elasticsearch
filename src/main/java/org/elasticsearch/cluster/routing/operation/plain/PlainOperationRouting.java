@@ -117,6 +117,7 @@ public class PlainOperationRouting extends AbstractComponent implements Operatio
 
     @Override
     public GroupShardsIterator searchShards(ClusterState clusterState, String[] indices, String[] concreteIndices, @Nullable Map<String, Set<String>> routing, @Nullable String preference) throws IndexMissingException {
+
         final Set<IndexShardRoutingTable> shards = computeTargetedShards(clusterState, concreteIndices, routing);
         final Set<ShardIterator> set = new HashSet<>(shards.size());
         for (IndexShardRoutingTable shard : shards) {
@@ -134,9 +135,12 @@ public class PlainOperationRouting extends AbstractComponent implements Operatio
         routing = routing == null ? EMPTY_ROUTING : routing; // just use an empty map
         final Set<IndexShardRoutingTable> set = new HashSet<>();
         // we use set here and not list since we might get duplicates
+        // fubuki
         for (String index : concreteIndices) {
             final IndexRoutingTable indexRouting = indexRoutingTable(clusterState, index);
             final Set<String> effectiveRouting = routing.get(index);
+
+
             if (effectiveRouting != null) {
                 for (String r : effectiveRouting) {
                     int shardId = shardId(clusterState, index, null, null, r);

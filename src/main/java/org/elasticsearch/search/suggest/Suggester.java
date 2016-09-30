@@ -26,6 +26,7 @@ import java.io.IOException;
 
 public abstract class Suggester<T extends SuggestionSearchContext.SuggestionContext> {
 
+    // ??????
     protected abstract Suggest.Suggestion<? extends Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>>
         innerExecute(String name, T suggestion, IndexSearcher searcher, CharsRefBuilder spare) throws IOException;
 
@@ -33,6 +34,7 @@ public abstract class Suggester<T extends SuggestionSearchContext.SuggestionCont
 
     public abstract SuggestContextParser getContextParser();
 
+    // fubuki trace suggest
     public Suggest.Suggestion<? extends Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>>
         execute(String name, T suggestion, IndexSearcher searcher, CharsRefBuilder spare) throws IOException {
         // #3469 We want to ignore empty shards

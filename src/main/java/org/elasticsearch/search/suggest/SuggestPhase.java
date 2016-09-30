@@ -73,7 +73,7 @@ public class SuggestPhase extends AbstractComponent implements SearchPhase {
         }
         context.queryResult().suggest(execute(suggest, context.searcher()));
     }
-
+    // fubuki trace suggest
     public Suggest execute(SuggestionSearchContext suggest, IndexSearcher searcher) {
         try {
             CharsRefBuilder spare = new CharsRefBuilder();
@@ -82,6 +82,7 @@ public class SuggestPhase extends AbstractComponent implements SearchPhase {
             for (Map.Entry<String, SuggestionSearchContext.SuggestionContext> entry : suggest.suggestions().entrySet()) {
                 SuggestionSearchContext.SuggestionContext suggestion = entry.getValue();
                 Suggester<SuggestionContext> suggester = suggestion.getSuggester();
+                // fubuki trace suggest
                 Suggestion<? extends Entry<? extends Option>> result = suggester.execute(entry.getKey(), suggestion, searcher, spare);
                 if (result != null) {
                     assert entry.getKey().equals(result.name);

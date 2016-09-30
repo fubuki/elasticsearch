@@ -505,6 +505,7 @@ public class MetaData implements Iterable<IndexMetaData> {
         return resolveSearchRouting(routing, convertFromWildcards(new String[]{aliasOrIndex}, IndicesOptions.lenientExpandOpen()));
     }
 
+    // fubuki
     public Map<String, Set<String>> resolveSearchRouting(@Nullable String routing, String[] aliasesOrIndices) {
         if (isAllIndices(aliasesOrIndices)) {
             return resolveSearchRoutingAllIndices(routing);

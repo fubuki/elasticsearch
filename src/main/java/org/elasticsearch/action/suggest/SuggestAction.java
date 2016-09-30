@@ -33,7 +33,7 @@ public class SuggestAction extends ClientAction<SuggestRequest, SuggestResponse,
     private SuggestAction() {
         super(NAME);
     }
-
+    //fubuki track suggest
     @Override
     public SuggestResponse newResponse() {
         return new SuggestResponse(new Suggest());

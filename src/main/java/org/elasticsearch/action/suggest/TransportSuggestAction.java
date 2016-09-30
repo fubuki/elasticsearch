@@ -138,7 +138,7 @@ public class TransportSuggestAction extends TransportBroadcastOperationAction<Su
                 successfulShards++;
             }
         }
-
+        // fubuki trace suggest sort
         return new SuggestResponse(new Suggest(Suggest.reduce(groupedSuggestions)), shardsResponses.length(), successfulShards, failedShards, shardFailures);
     }
 
@@ -157,6 +157,7 @@ public class TransportSuggestAction extends TransportBroadcastOperationAction<Su
                 if (parser.nextToken() != XContentParser.Token.START_OBJECT) {
                     throw new ElasticsearchIllegalArgumentException("suggest content missing");
                 }
+                // fubuki trace suggest sort
                 final SuggestionSearchContext context = suggestPhase.parseElement().parseInternal(parser, indexService.mapperService(),
                         indexService.queryParserService(), request.shardId().getIndex(), request.shardId().id());
                 final Suggest result = suggestPhase.execute(context, searcher.searcher());

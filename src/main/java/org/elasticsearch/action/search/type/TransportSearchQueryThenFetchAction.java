@@ -80,6 +80,7 @@ public class TransportSearchQueryThenFetchAction extends TransportSearchTypeActi
 
         @Override
         protected void sendExecuteFirstPhase(DiscoveryNode node, ShardSearchTransportRequest request, SearchServiceListener<QuerySearchResultProvider> listener) {
+            // fubuki
             searchService.sendExecuteQuery(node, request, listener);
         }
 

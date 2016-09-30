@@ -108,6 +108,7 @@ public class Suggest implements Iterable<Suggest.Suggestion<? extends Entry<? ex
         return (T) suggestMap.get(name);
     }
 
+    // fubuki track suggest
     @Override
     public void readFrom(StreamInput in) throws IOException {
         final int size = in.readVInt();
@@ -362,7 +363,7 @@ public class Suggest implements Iterable<Suggest.Suggestion<? extends Entry<? ex
             public void addOption(O option) {
                 options.add(option);
             }
-            
+            // fubuki track sugesst sort function
             protected void sort(Comparator<O> comparator) {
                 CollectionUtil.timSort(options, comparator);
             }
@@ -582,7 +583,7 @@ public class Suggest implements Iterable<Suggest.Suggestion<? extends Entry<? ex
                 protected void setScore(float score) {
                     this.score = score;
                 }
-
+                // fubuki track suggest score
                 @Override
                 public void readFrom(StreamInput in) throws IOException {
                     text = in.readText();
@@ -645,7 +646,7 @@ public class Suggest implements Iterable<Suggest.Suggestion<? extends Entry<? ex
                 }
             }
         }
-
+        // fubuki track suggest sort
         public enum Sort {
 
             /**
